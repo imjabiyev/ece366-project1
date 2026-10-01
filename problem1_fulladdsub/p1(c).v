@@ -1,19 +1,20 @@
-module one_bit_full_adder (A,B,Cin,S,Cout);
+module one_bit_full_adder(A,B,Cin,S,Cout);
   
   input A, B, Cin;
   output S, Cout;
   
-  wire xor_g, and1, and2, and3, or1;
-  
-  xor U_xor1 (xor_g, A, B);
-  xor U_xor2 (S, xor_g, Cin);
-  
-  and U_and1 (and1, A, Cin);
-  and U_and2 (and2, B, Cin);
-  and U_and3 (and3, A, B);
-  
-  or U_or1 (or1, and1, and2);
-  or U_or2(Cout, or1, and3);
+  wire xor_1_o, and_1_o, and_2_o;
+
+  // first layer
+  xor xor_1 (xor_1_o, A, B);
+  and and_1 (and_1_o, A, B);
+
+  // second layer
+  xor xor_2 (S, Cin, xor_1_o);
+  and and_2 (and_2_o, Cin, xor_1_o);
+
+  // third layer
+  or or_1 (Cout, and_1_o, and_2_o);
   
 endmodule
 
