@@ -51,7 +51,7 @@ module CLA(A, B, Cin, S, Cout);
 
   wire [7:0] G; //Block Generate signals
   wire [7:0] P; //Block Propagate signals
-  wire [8;0] C; //Inter-block carries 
+  wire [8:0] C; //Inter-block carries 
 
   assign C[0] = Cin;
 
