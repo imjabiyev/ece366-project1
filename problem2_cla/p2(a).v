@@ -69,7 +69,7 @@ module CLA(A, B, Cin, S, Cout);
   //Instantatiation of Eight 4-bit CLA blocks
   genvar i;
   generate
-    for (i = 0; i < 8, i = i + 1) begin: CLA_Blocks
+    for (i = 0; i < 8; i = i + 1) begin: CLA_Blocks
       four_bit_cla_block block_inst (
         .A (A[4*i+3 : 4*i]),
         .B (B[4*i+3 : 4*i]),
