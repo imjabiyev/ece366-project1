@@ -7,12 +7,22 @@ result: .word 0             # output: 1 if Fibonacci(n) is odd, 0 if even
         .globl main
 main:
         lw   $a0, n
-        jal  fibonacci
-        move $a0, $v0
-        jal  is_odd
+        jal  is_fibonacci_odd
         sw   $v0, result
         li   $v0, 10        # exit
         syscall
+
+is_fibonacci_odd:
+        addi $sp, $sp, -4   #makes room on the stack
+        sw $ra, 0($sp)      #saves return address to main
+
+        jal fibonacci       #v0 = fibonacci(n)
+        move $a0, $v0       #pass F(n) as argument to is_odd
+        jal is_odd          #v0 = is_odd(F(n))
+
+        lw $ra, 0($sp)      #restore return address to main
+        addi $sp, $sp, 4    #frees stack space
+        jr $ra              #return to main
 
 fibonacci:
         slti $t0, $a0, 2            # t0 = 1 if n < 2
