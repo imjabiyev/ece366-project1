@@ -67,7 +67,7 @@ division:
 div_loop:
         slt  $t1, $a0, $a1          # t1 = 1 if x < y
         bne  $t1, $zero, div_done   # stop when x < y (loop runs while x >= y)
-        sub  $a0, $a0, $a1          # x = x - y
+        subu  $a0, $a0, $a1          # x = x - y
         addi $t0, $t0, 1            # quotient = quotient + 1
         j    div_loop
 div_done:
