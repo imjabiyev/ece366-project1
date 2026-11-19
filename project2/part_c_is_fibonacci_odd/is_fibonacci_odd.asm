@@ -9,7 +9,16 @@ main:
         lw   $a0, n
         jal  is_fibonacci_odd
         sw   $v0, result
-        li   $v0, 10        # exit
+
+        li   $v0, 4
+        la   $a0, msg         # print message
+        syscall
+
+        li   $v0, 1
+        lw   $a0, result         # Print result stored in memory
+        syscall
+
+        li   $v0, 10
         syscall
 
 is_fibonacci_odd:
