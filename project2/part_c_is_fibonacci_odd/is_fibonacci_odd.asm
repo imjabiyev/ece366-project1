@@ -2,6 +2,7 @@
         .data
 n:      .word 10            # input: nonnegative integer
 result: .word 0             # output: 1 if Fibonacci(n) is odd, 0 if even
+msg:    .asciiz "Is Fibonacci(n) odd? "
 
         .text
         .globl main
